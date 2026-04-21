@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moodmap - Page 2</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="gallery">
+      <section class="phone">
+        <p class="label">Page 2</p>
+        <article class="screen">
+          <div class="top-row">
+            <span>Profile</span>
+            <span>Date</span>
+          </div>
+
+          <div id="page2-main">
+            <h2 class="page-title">Mood</h2>
+
+            <div class="section-row">
+              <p class="group-title">Feeling</p>
+              <div class="emotion-grid">
+                <label class="emotion-option"><input type="checkbox" name="emotion" value="stressed"> Stressed</label>
+                <label class="emotion-option"><input type="checkbox" name="emotion" value="excited"> Excited</label>
+                <label class="emotion-option"><input type="checkbox" name="emotion" value="angry"> Angry</label>
+                <label class="emotion-option"><input type="checkbox" name="emotion" value="happy"> Happy</label>
+                <label class="emotion-option"><input type="checkbox" name="emotion" value="sad"> Sad</label>
+                <label class="emotion-option"><input type="checkbox" name="emotion" value="anxious"> Anxious</label>
+                <label class="emotion-option"><input type="checkbox" name="emotion" value="calm"> Calm</label>
+                <label class="emotion-option"><input type="checkbox" name="emotion" value="tired"> Tired</label>
+              </div>
+            </div>
+
+            <div class="section-row">
+              <p class="group-title">Nutrition</p>
+              <div class="food-grid">
+                <label class="food-option"><input type="checkbox" name="food" value="fruits"> Fruits</label>
+                <label class="food-option"><input type="checkbox" name="food" value="vegetables"> Vegetables</label>
+                <label class="food-option"><input type="checkbox" name="food" value="protein"> Protein</label>
+                <label class="food-option"><input type="checkbox" name="food" value="dairy"> Dairy</label>
+                <label class="food-option"><input type="checkbox" name="food" value="grains"> Grains</label>
+                <label class="food-option"><input type="checkbox" name="food" value="sweets"> Sweets</label>
+                <label class="food-option"><input type="checkbox" name="food" value="beverages"> Beverages</label>
+                <label class="food-option"><input type="checkbox" name="food" value="snacks"> Snacks</label>
+              </div>
+            </div>
+
+            <div class="sliders">
+              <label>Sleep <input type="range" value="55" /></label>
+              <label>Exercise <input type="range" value="48" /></label>
+              <label>Screen time <input type="range" value="65" /></label>
+            </div>
+
+            <button id="submit-mood" class="submit-btn" type="button">Submit</button>
+          </div>
+
+          <div id="page2-cleared-message" class="page2-cleared-message page2-hidden">
+            Logged for today! Great job checking in.
+          </div>
+          <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+          <nav class="bottom-nav">
+            <a href="../page1/index.html" title="Home">⌂</a>
+            <a class="active" href="../page2/index.html" title="Brain">🧠</a>
+            <a href="../page3/index.html" title="Map">🗺</a>
+            <a href="../page4/index.html" title="Chat">✉</a>
+          </nav>
+          <div class="footer-band"></div>
+        </article>
+      </section>
+    </main>
+    <script>
+      const submitMood = document.getElementById("submit-mood");
+      const pageMain = document.getElementById("page2-main");
+      const clearedMessage = document.getElementById("page2-cleared-message");
+      const confettiLayer = document.getElementById("confetti-layer");
+
+      function launchConfetti() {
+        const colors = ["#7cb4d2", "#1f6799", "#8dbcd8", "#d5e8f4", "#6aa7cb"];
+        const count = 90;
+
+        for (let i = 0; i < count; i += 1) {
+          const piece = document.createElement("span");
+          piece.className = "confetti-piece";
+          piece.style.left = `${Math.random() * 100}%`;
+          piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          piece.style.animationDelay = `${Math.random() * 0.2}s`;
+          piece.style.animationDuration = `${1.2 + Math.random() * 1.1}s`;
+          piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+          confettiLayer.appendChild(piece);
+        }
+
+        setTimeout(() => {
+          confettiLayer.innerHTML = "";
+        }, 2600);
+      }
+
+      submitMood.addEventListener("click", () => {
+        pageMain.classList.add("page2-hidden");
+        clearedMessage.classList.remove("page2-hidden");
+        launchConfetti();
+      });
+    </script>
+  </body>
+</html>

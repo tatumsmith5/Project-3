@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moodmap - Page 1</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="gallery">
+      <section class="phone">
+        <p class="label">Page 1</p>
+        <article class="screen">
+          <div class="top-row">
+            <span>Profile</span>
+          </div>
+
+          <div class="hero">
+            <h1>Moodmap.</h1>
+            <p id="current-day"></p>
+          </div>
+
+          <div class="mood-dots mood-faces">
+            <div class="mood-item">
+              <span>Very Low</span>
+              <button class="mood-face" data-mood="very low" aria-label="Very low mood">
+                <svg viewBox="0 0 24 24" class="face-svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <circle cx="9" cy="10" r="1"></circle>
+                  <circle cx="15" cy="10" r="1"></circle>
+                  <path d="M8 16 Q12 12.5 16 16"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="mood-item">
+              <span>Low</span>
+              <button class="mood-face" data-mood="low" aria-label="Low mood">
+                <svg viewBox="0 0 24 24" class="face-svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <circle cx="9" cy="10" r="1"></circle>
+                  <circle cx="15" cy="10" r="1"></circle>
+                  <path d="M8 15 Q12 13.5 16 15"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="mood-item">
+              <span>Neutral</span>
+              <button class="mood-face" data-mood="neutral" aria-label="Neutral mood">
+                <svg viewBox="0 0 24 24" class="face-svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <circle cx="9" cy="10" r="1"></circle>
+                  <circle cx="15" cy="10" r="1"></circle>
+                  <path d="M8.5 15 H15.5"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="mood-item">
+              <span>Good</span>
+              <button class="mood-face" data-mood="good" aria-label="Good mood">
+                <svg viewBox="0 0 24 24" class="face-svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <circle cx="9" cy="10" r="1"></circle>
+                  <circle cx="15" cy="10" r="1"></circle>
+                  <path d="M8 14 Q12 17 16 14"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="mood-item">
+              <span>Great</span>
+              <button class="mood-face" data-mood="great" aria-label="Great mood">
+                <svg viewBox="0 0 24 24" class="face-svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <circle cx="9" cy="10" r="1"></circle>
+                  <circle cx="15" cy="10" r="1"></circle>
+                  <path d="M8 13.5 Q12 17.8 16 13.5"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="tips-popup" class="tips popup-hidden" role="dialog" aria-live="polite">
+            <div class="tips-header">
+              <span id="tips-title">Mental Health Tips</span>
+              <button id="close-tips" class="x" type="button" aria-label="Close tips">x</button>
+            </div>
+            <div class="tip-cards">
+              <div class="tip-card">
+                <p>Tip #1</p>
+                <div id="tip-1" class="tip-preview tip-text"></div>
+              </div>
+              <div class="tip-card">
+                <p>Tip #2</p>
+                <div id="tip-2" class="tip-preview tip-text"></div>
+              </div>
+              <div class="tip-card">
+                <p>Tip #3</p>
+                <div id="tip-3" class="tip-preview tip-text"></div>
+              </div>
+            </div>
+          </div>
+
+          <nav class="bottom-nav">
+            <a class="active" href="../page1/index.html" title="Home">⌂</a>
+            <a href="../page2/index.html" title="Brain">🧠</a>
+            <a href="../page3/index.html" title="Map">🗺</a>
+            <a href="../page4/index.html" title="Chat">✉</a>
+          </nav>
+          <div class="footer-band"></div>
+        </article>
+      </section>
+    </main>
+    <script>
+      const dayNames = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      const today = new Date();
+      const dayName = dayNames[today.getDay()];
+      const month = monthNames[today.getMonth()];
+      const day = today.getDate();
+      const year = today.getFullYear();
+      document.getElementById("current-day").textContent = `${dayName} ${month} ${day}, ${year}`;
+
+      const tipsByMood = {
+        "very low": [
+          "Take 10 slow breaths and unclench your shoulders.",
+          "Text one trusted friend and share one sentence.",
+          "Walk to a quiet outdoor spot for 5 minutes.",
+        ],
+        low: [
+          "Drink water and stretch for two minutes.",
+          "Pick one tiny task you can finish in 10 minutes.",
+          "Listen to one calming song without scrolling.",
+        ],
+        neutral: [
+          "Check in: what do you need most right now?",
+          "Plan one healthy meal or snack for later.",
+          "Take a short break before your next class.",
+        ],
+        good: [
+          "Capture one win from today in your notes.",
+          "Use your energy for a focused 25-minute session.",
+          "Share your positive moment with someone.",
+        ],
+        great: [
+          "Celebrate with a short gratitude list of three.",
+          "Channel momentum into your hardest task first.",
+          "Plan a relaxing evening to protect this mood.",
+        ],
+      };
+
+      const moodButtons = document.querySelectorAll(".mood-face");
+      const popup = document.getElementById("tips-popup");
+      const tipsTitle = document.getElementById("tips-title");
+      const closeTips = document.getElementById("close-tips");
+      const tipEls = [
+        document.getElementById("tip-1"),
+        document.getElementById("tip-2"),
+        document.getElementById("tip-3"),
+      ];
+
+      moodButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          moodButtons.forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+
+          const mood = button.dataset.mood;
+          const tips = tipsByMood[mood] || tipsByMood.neutral;
+          tipsTitle.textContent = `Mental Health Tips - ${mood}`;
+          tipEls.forEach((el, idx) => {
+            el.textContent = tips[idx];
+          });
+
+          popup.classList.remove("popup-hidden");
+        });
+      });
+
+      closeTips.addEventListener("click", () => {
+        popup.classList.add("popup-hidden");
+      });
+    </script>
+  </body>
+</html>

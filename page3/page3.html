@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moodmap - Page 3</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <main class="gallery">
+      <section class="phone">
+        <p class="label">Page 3</p>
+        <article class="screen">
+          <div class="top-row">
+            <span>How did you feel on campus today?</span>
+          </div>
+          <div
+            id="utk-heat-map"
+            class="campus-map"
+            role="region"
+            aria-label="University of Tennessee Knoxville heat map"
+          ></div>
+          <nav class="bottom-nav">
+            <a href="../page1/index.html" title="Home">⌂</a>
+            <a href="../page2/index.html" title="Brain">🧠</a>
+            <a class="active" href="../page3/index.html" title="Map">🗺</a>
+            <a href="../page4/index.html" title="Chat">✉</a>
+          </nav>
+          <div class="footer-band"></div>
+        </article>
+      </section>
+    </main>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <script>
+      const utkCenter = [35.9545, -83.9294];
+      const map = L.map("utk-heat-map", { zoomControl: false }).setView(utkCenter, 15);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+      const moodHeatPoints = [
+        [35.9554, -83.9296, 0.95],
+        [35.9548, -83.9286, 0.86],
+        [35.9539, -83.9307, 0.9],
+        [35.9532, -83.9288, 0.75],
+        [35.9563, -83.9277, 0.8],
+        [35.9527, -83.9321, 0.7],
+        [35.9519, -83.9284, 0.65],
+        [35.9569, -83.9308, 0.6],
+        [35.9558, -83.9332, 0.7],
+        [35.9542, -83.9266, 0.72],
+      ];
+
+      L.heatLayer(moodHeatPoints, {
+        radius: 32,
+        blur: 24,
+        maxZoom: 17,
+        gradient: {
+          0.2: "#b8def0",
+          0.45: "#6aa7cb",
+          0.65: "#3a739a",
+          0.85: "#1f6799",
+        },
+      }).addTo(map);
+    </script>
+  </body>
+</html>

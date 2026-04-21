@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moodmap - Page 4</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="gallery">
+      <section class="phone">
+        <p class="label">Page 4</p>
+        <article class="screen">
+          <div class="top-row">
+            <span>Moodmap AI</span>
+          </div>
+
+          <section class="ai-chat" aria-label="AI chat conversation">
+            <div class="chat-bubble ai">
+              Hi! I am your Moodmap assistant. Tell me how your day is going.
+            </div>
+            <div class="chat-bubble ai">
+              I can suggest study breaks, calming exercises, or campus wellness ideas.
+            </div>
+          </section>
+
+          <form class="chat-input-wrap" id="chat-form">
+            <input
+              id="chat-input"
+              type="text"
+              placeholder="Type your message..."
+              autocomplete="off"
+            />
+            <button class="send-btn" type="submit" aria-label="Send message">↗</button>
+          </form>
+
+          <nav class="bottom-nav">
+            <a href="../page1/index.html" title="Home">⌂</a>
+            <a href="../page2/index.html" title="Brain">🧠</a>
+            <a href="../page3/index.html" title="Map">🗺</a>
+            <a class="active" href="../page4/index.html" title="Chat">✉</a>
+          </nav>
+          <div class="footer-band"></div>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      const chatForm = document.getElementById("chat-form");
+      const chatInput = document.getElementById("chat-input");
+      const chatFeed = document.querySelector(".ai-chat");
+
+      function pickResponse(message) {
+        const text = message.toLowerCase();
+
+        if (text.includes("stress") || text.includes("anxious") || text.includes("overwhelmed")) {
+          return "I hear you. Try a 60-second breathing break: inhale for 4, hold for 4, exhale for 6. Want me to guide one?";
+        }
+
+        if (text.includes("sad") || text.includes("down") || text.includes("lonely")) {
+          return "Thanks for sharing that. A small step can help: text one supportive friend or take a short walk near campus greenery.";
+        }
+
+        if (text.includes("happy") || text.includes("great") || text.includes("good")) {
+          return "Love that energy. Try writing down one win from today so you can revisit it later.";
+        }
+
+        if (text.includes("study") || text.includes("exam") || text.includes("homework")) {
+          return "For focus, try a 25/5 study cycle: 25 minutes deep work, 5 minutes reset. I can help you build a study plan too.";
+        }
+
+        if (text.includes("sleep") || text.includes("tired")) {
+          return "If you are tired, try reducing screen brightness now and set a short wind-down routine tonight.";
+        }
+
+        return "I am here with you. Tell me more, and I will suggest one small next step you can take today.";
+      }
+
+      function addMessage(text, who) {
+        const message = document.createElement("div");
+        message.className = `chat-bubble ${who}`;
+        message.textContent = text;
+        chatFeed.appendChild(message);
+        chatFeed.scrollTop = chatFeed.scrollHeight;
+      }
+
+      chatForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const prompt = chatInput.value.trim();
+        if (!prompt) {
+          return;
+        }
+
+        addMessage(prompt, "user");
+        chatInput.value = "";
+
+        const response = pickResponse(prompt);
+        setTimeout(() => addMessage(response, "ai"), 350);
+      });
+    </script>
+  </body>
+</html>

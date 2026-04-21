@@ -1,0 +1,18 @@
+@import url("../style.css");
+
+body {
+  padding: 24px;
+}
+
+.gallery {
+  max-width: 393px;
+}
+
+.phone {
+  width: 393px !important;
+}
+
+.screen {
+  width: 393px;
+  height: 852px !important;
+}
